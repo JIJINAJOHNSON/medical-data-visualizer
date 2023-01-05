@@ -1,0 +1,51 @@
+import pandas as pd
+
+
+medical = pd.read_csv("medical_examination.csv")
+
+medical
+
+medical.loc[:,'Overweight']=0
+
+medical
+
+import seaborn as sns
+
+sns.regplot(x = "Age", y = "Presence or absence of cardiovascular disease", data = medical)
+
+medical["Diastolic blood pressure"]
+medical_sub = medical.loc[medical["Systolic blood pressure"] < medical["Diastolic blood pressure"]]
+
+medical_sub
+
+sns.regplot(x = "Diastolic blood pressure", y = "Systolic blood pressure", data = medical_sub)
+
+medical["Height"].quantile([0.5,0.95,0.99])
+medical_sub = medical.loc[medical["Height"] < medical["Height"].quantile(0.025)]
+
+medical_sub
+
+medical["Height"].quantile([0.5,0.95,0.99])
+medical_sub = medical.loc[medical["Height"] < medical["Height"].quantile(0.97)]
+
+medical_sub
+
+medical["Weight"].quantile([0.5,0.95,0.99])
+medical_sub = medical.loc[medical["Weight"] < medical["Weight"].quantile(0.025)]
+
+medical_sub
+
+medical["Weight"].quantile([0.5,0.95,0.99])
+medical_sub = medical.loc[medical["Weight"] < medical["Weight"].quantile(0.97)]
+
+medical_sub
+
+medical["Physical quatity"].corr(medical["Presence or absence of cardiovascular disease"])
+medical_sub["Physical quatity"].corr(medical_sub["Presence or absence of cardiovascular disease"])
+
+sns.countplot(x = "Physical quatity", data = medical, hue = "Presence or absence of cardiovascular disease");
+
+medical["Cholesterol"].value_counts()
+
+medical["Overweight"].value_counts()
+
